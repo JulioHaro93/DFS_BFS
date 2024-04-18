@@ -435,6 +435,8 @@ class Grafo:
             print("intentito")
         return grafillo
 
+
+
   
 malla30 = Grafo().grafoMalla(30,1, False)
 qMalla30 = Queue(len(malla30.aristas))
@@ -489,15 +491,53 @@ Grafo().generaGephi(dfs_i_erdos500, "erdos100DFS")
 Grafo().generaGephi(dfsRerdos500,"erdosRec100")
 Grafo().generaGephi(bfs_erdos500, "erdosBFS100")
 
+
+'''
 gilbert30 = Grafo().grafoGilbert(30,0.2,False)
-dfs_i_gilbert30 = Grafo().dfs_i(gilbert30,0)
-Grafo().generaGephi(dfs_i_gilbert30, "gilbertchicoDFS")
+dfs_i_gilbert30 = Grafo().dfs_i_malla(gilbert30,0)
+bfs_gilbert30 = Grafo().bfs(gilbert30, 0)
+grafito = Grafo()
+dfsRgilbert30 = Grafo().dfs_r(grafito.limpiaGrafo(gilbert30),0,1, grafito)
+Grafo().generaGephi(dfs_i_gilbert30, "gilbert30DFS")
+Grafo().generaGephi(dfsRgilbert30,"gilbertR30")
+Grafo().generaGephi(bfs_gilbert30, "gilbertBFS30")
+
 gilbert100 = Grafo().grafoGilbert(100,0.2,False)
-dfs_i_gilbert100 = Grafo().dfs_i(gilbert100,0)
-Grafo().generaGephi(dfs_i_gilbert100, "gilbertmedianoDFS")
+dfs_i_gilbert100 = Grafo().dfs_i_malla(gilbert100,0)
+bfs_gilbert100 = Grafo().bfs(gilbert100, 0)
+grafito = Grafo()
+dfsRgilbert100 = Grafo().dfs_r(grafito.limpiaGrafo(gilbert100),0,1, grafito)
+Grafo().generaGephi(dfs_i_gilbert100, "gilbert100DFS")
+Grafo().generaGephi(dfsRgilbert100,"gilbertR100")
+Grafo().generaGephi(bfs_gilbert100, "gilbertBFS100")
+'''
+
+
+bfs_erdos500 = Grafo().bfs(erdos500, 0)
+grafito = Grafo()
+dfsRerdos500 = Grafo().dfs_r(grafito.limpiaGrafo(erdos500),0,1, grafito)
+Grafo().generaGephi(dfs_i_erdos500, "erdos100DFS")
+Grafo().generaGephi(dfsRerdos500,"erdosRec100")
+Grafo().generaGephi(bfs_erdos500, "erdosBFS100")
+
+'''
+
 gilbert500 = Grafo().grafoGilbert(500,0.2,False)
-dfs_i_gilbert500 = Grafo().dfs_i(gilbert500,0)
-Grafo().generaGephi(dfs_i_gilbert500, "gilbertgrandeDFS")
+dfs_i_gilbert500 = Grafo().dfs_i_malla(gilbert500,0)
+bfs_gilbert500 = Grafo().bfs(gilbert500, 0)
+grafito = Grafo()
+dfsRgilbert500 = Grafo().dfs_r(grafito.limpiaGrafo(gilbert500),0,1, grafito)
+Grafo().generaGephi(dfs_i_gilbert500, "gilbert500DFS")
+Grafo().generaGephi(dfsRgilbert500,"gilbertR500")
+Grafo().generaGephi(bfs_gilbert500, "gilbertBFS500")
+'''
+
+bfs_erdos500 = Grafo().bfs(erdos500, 0)
+grafito = Grafo()
+dfsRerdos500 = Grafo().dfs_r(grafito.limpiaGrafo(erdos500),0,1, grafito)
+Grafo().generaGephi(dfs_i_erdos500, "erdos100DFS")
+Grafo().generaGephi(dfsRerdos500,"erdosRec100")
+Grafo().generaGephi(bfs_erdos500, "erdosBFS100")
 
 
 geo30 = Grafo().grafoGeografico(30,1, False)
@@ -588,6 +628,8 @@ dfsRmendes500 = Grafo().dfs_r(grafito.limpiaGrafo(mendes500),0,1, grafito)
 Grafo().generaGephi(dfs_i_mendes500, "mendes500DFS")
 Grafo().generaGephi(dfsRmendes500,"mendesRec500")
 Grafo().generaGephi(bfs_mendes500, "mendesBFS500")
+
+
 
 
 repo = 'https://github.com/JulioHaro93/DFS_BFS'
