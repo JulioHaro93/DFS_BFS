@@ -590,6 +590,6 @@ Grafo().generaGephi(dfsRmendes500,"mendesRec500")
 Grafo().generaGephi(bfs_mendes500, "mendesBFS500")
 
 
-repo = 'https://github.com/JulioHaro93/GraphsModels/BFS_DFS'
+repo = 'https://github.com/JulioHaro93/DFS_BFS'
 
 print("repositorio", repo)
