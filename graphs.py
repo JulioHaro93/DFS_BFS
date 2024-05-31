@@ -1,10 +1,6 @@
-#!/usr/bin/env python
-# _*_ coding: utf8 _*_
-
 import random
 import string
 import math
-
 
 class Nodo:
     
@@ -25,12 +21,14 @@ class Arista:
         self.origen = origen
         self.destino = destino
         self.grado = grado
-
+    def __lt__(self, other):
+        return self.distancia < other.distancia
 
 class Grafo:
     def __init__(self):
         self.nodos = []
         self.aristas = []
+        self.mst = 0
 
     def agregar_nodo(self, nodo):
         self.nodos.append(nodo)
@@ -48,9 +46,10 @@ class Grafo:
             random.choice(string.ascii_letters + string.digits)
             for _ in range(10)
             )
-        #print(idcitoBb)
         return idcitoBb
-
+    def obtenerNodoArbitrario(self,largo):
+        numerillo = random.randint(0,largo)
+        return numerillo
     def grafoMalla(self,m, n, dirigido=False):
         """
         Genera grafo de malla
@@ -96,7 +95,6 @@ class Grafo:
                         nodos[i+1][j+1].idson = self.generaId()
                     arista = Arista(nodos[i][j], nodos[i+1][j+1])
                 if(i<m-1 and j<n-1):
-                    
                     print(str(nodos[i][j].pos)+'--------'+ str(nodos[i][j+1].pos) +'\n|\n|\n|\n|\n'+str(nodos[i+1][j].pos))
                 j+=1
             i+=1
@@ -131,7 +129,7 @@ class Grafo:
                             if(nodos[numerillo].aristas_posibles < 4 and nodos[x].aristas_posibles < 4):
                                 arista = Arista(nodos[x], nodos[numerillo])
                                 self.agregarArista(nodos[x], nodos[numerillo])
-                                print("se enlazó"+ str(nodos[x].pos) +"#######"+ str(nodos[numerillo].pos) )
+                                #print("se enlazó"+ str(nodos[x].pos) +"#######"+ str(nodos[numerillo].pos) )
                                 nodos[numerillo].aristas_posibles +=1
                                 nodos[x].aristas_posibles += 1
 
@@ -166,7 +164,7 @@ class Grafo:
                     if(p > random.random()):
                         arista = Arista(nodos[i], nodos2[j])
                         self.agregarArista(nodos[i], nodos2[j])
-                        print("se enlazó "+str(arista.origen.pos)+"-------"+ str(arista.destino.pos))
+                        #print("se enlazó "+str(arista.origen.pos)+"-------"+ str(arista.destino.pos))
             j+=1
         i+=1
         grafito = Grafo()
@@ -206,7 +204,7 @@ class Grafo:
                 if(euclidesDist < r):
                     self.agregarArista(nodos[y], nodos[index])
                     arista = Arista(nodos[y], nodos[index])
-                    print("arista1: " + str(arista.origen.pos)+"////////"+"arista2: "+str(arista.destino.pos))
+                    #print("arista1: " + str(arista.origen.pos)+"////////"+"arista2: "+str(arista.destino.pos))
         y+=1
         
         grafito = Grafo()
@@ -232,14 +230,14 @@ class Grafo:
                 self.agregarArista(nodos[x], nodos[x-1])
                 nodos[x].aristas_posibles +=1
                 nodos[x-1].aristas_posibles +=1
-                print(str(nodos[x].pos)+"-conectado con-"+str(nodos[x-1].pos))
+                #print(str(nodos[x].pos)+"-conectado con-"+str(nodos[x-1].pos))
                 #print(str(nodos[0].pos))
                 if x == d-1:
                     
                     self.agregarArista(nodos[x], nodos[0])
                     nodos[x].aristas_posibles +=1
                     nodos[0].aristas_posibles +=1
-                    print(str(nodos[x].pos)+"-conectado con-"+str(nodos[0].pos))
+                    #print(str(nodos[x].pos)+"-conectado con-"+str(nodos[0].pos))
             x+=1
         ##print(str(nodos[0].aristas_posibles)+"ARISTAS POSIBLES DE LA PRIMER POSICION")
         y=0;s=0;l=d
@@ -252,7 +250,7 @@ class Grafo:
             numerillo =  random.randint(0, y-1)
             if(nodos[y].idson != nodos[numerillo]):
                 self.agregarArista(nodos[y], nodos[numerillo])
-                print(str(nodos[y].pos)+"-conectado con-" + str(nodos[numerillo].pos))
+                #print(str(nodos[y].pos)+"-conectado con-" + str(nodos[numerillo].pos))
 
             y+=1
         grafito = Grafo()
@@ -278,14 +276,14 @@ class Grafo:
                 self.agregarArista(nodos[x], nodos[x-1])
                 nodos[x].aristas_posibles +=1
                 nodos[x-1].aristas_posibles +=1
-                print(str(nodos[x].pos)+"-conectado Mendes con-"+str(nodos[x-1].pos))
+                #print(str(nodos[x].pos)+"-conectado Mendes con-"+str(nodos[x-1].pos))
                 #print(str(nodos[0].pos))
                 if x == d-1:
                     
                     self.agregarArista(nodos[x], nodos[0])
                     nodos[x].aristas_posibles +=1
                     nodos[0].aristas_posibles +=1
-                    print(str(nodos[x].pos)+"-conectado Mendes con-"+str(nodos[0].pos))
+                    #print(str(nodos[x].pos)+"-conectado Mendes con-"+str(nodos[0].pos))
             x+=1
         ##print(str(nodos[0].aristas_posibles)+"ARISTAS POSIBLES DE LA PRIMER POSICION")
         y=0;l=d
@@ -298,7 +296,7 @@ class Grafo:
             numerillo =  random.randint(0, y-1)
             if(nodos[y].idson != nodos[numerillo]):
                 self.agregarArista(nodos[y], nodos[numerillo])
-                print(str(nodos[y].pos)+"-conectado Mendes con-" + str(nodos[numerillo].pos))
+                #print(str(nodos[y].pos)+"-conectado Mendes con-" + str(nodos[numerillo].pos))
 
             y+=1
 
@@ -309,9 +307,10 @@ class Grafo:
     
     def generaGephi(self, grafo, nombre_archivo):
         dot = "graph G {\n"
-        
+
         x=0
         for arista in grafo.aristas:
+            #print(arista)
             dot += f'  {grafo.aristas[x].origen.pos} -> {grafo.aristas[x].destino.pos};\n'
             x+=1
         dot += "}"
@@ -335,8 +334,14 @@ class Grafo:
         return GrafoNuevo
 
 
+
+
+"""
 malla30 = Grafo().grafoMalla(30,3, False)
-dijkstraChico = Grafo().dijkstra(malla30)
+dijkstraChico = kp.kruskal(malla30)
+kInvChi = kp.kruskalInv(malla30)
+primChi = kp.prim(malla30)
+
 Grafo().generaGephi(dijkstraChico, "mallachico")
 malla100 = Grafo().grafoMalla(100,3, False)
 dijkstraMediano = Grafo().dijkstra(malla100)
@@ -344,7 +349,9 @@ Grafo().generaGephi(dijkstraMediano,"mallaMediano")
 malla500 = Grafo().grafoMalla(500,3, False)
 dijkstraGrande = Grafo().dijkstra(malla500)
 Grafo().generaGephi(dijkstraGrande, "mallaGande")
+"""
 
+"""
 erdos30 = Grafo().grafoErdosRenyi(30,4, False)
 dijkstraChico = Grafo().dijkstra(erdos30)
 Grafo().generaGephi(dijkstraChico, "erdoschico")
@@ -397,6 +404,8 @@ Grafo().generaGephi(dijkstraMediano, "mendesmediano")
 mendes500 = Grafo().grafoDorogovtsevMendes(500, False)
 dijkstraGrande = Grafo().dijkstra(mendes500)
 Grafo().generaGephi(dijkstraGrande, "mendesgrande")
+"""
+
 
 repo = 'https://github.com/JulioHaro93/Dijkstra'
 
